@@ -1,0 +1,89 @@
+
+.navbar{
+      background-color: greenyellow;
+    padding: 0;
+     height:40px;
+     width:100%;
+    /* border-radius:20px; */
+     position: fixed;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+}
+
+.group_list{
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+      width:100%;
+      justify-content: center;
+      align-items: center;
+      padding:0;
+      margin:0;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    font-size: 1.1rem;
+  
+}
+
+
+
+.navlink{
+    color: black;
+    text-decoration: none;
+} 
+
+.active{
+    color:blue;
+}
+
+
+
+.hamburgerIcon{
+    display: none;
+}
+
+@media only screen and (max-Width:400px){
+  
+   
+
+   .hamburgerIcon{
+    display: block;
+    font-size: 25px;
+    position: absolute;
+    right:15px;
+    top: 20%;
+  
+     cursor: pointer;
+    z-index:999;
+    /* margin-top:5px; */
+   } 
+.group_list{
+    display: none;
+}
+  
+ .res_group_list{
+     padding:0;
+     margin: 0px 0 0 0;
+     width:100%;
+     height:250px;
+     list-style-type: none;
+     background-color: rgba(172, 255, 47, 0.568);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     row-gap:20px;
+     font-size:1.2rem;
+     z-index:999;
+     align-items: center;
+    
+     border-radius: 0px 0px 20px 20px;
+     position: absolute;
+     top: 40px;
+     left:0;
+   
+    /* margin-top:45px; */
+
+ }
+
+}

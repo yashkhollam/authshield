@@ -1,0 +1,54 @@
+
+
+
+#form-container{
+    display: flex;
+    justify-content:center;
+    /* min-height:650px;
+    height:auto; */
+
+    min-height:100vh;
+    height:auto;
+    overflow: hidden;
+    
+}
+
+.form{
+    background-color:#ffffff;
+}
+
+
+
+#container{
+   background-color: #e9ecf4 ;
+ 
+}
+
+
+
+
+.otp-container{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
+
+.inputs{
+    width:44px;
+    height: 50px;
+    font-size:23px;
+}
+
+
+
+.btndisable{
+    color: gray;
+    border:"none";
+    background-color:"white"
+}
+
+.btnenable{
+    color: blue;
+    border:"none";
+    background-color:"white"
+}
