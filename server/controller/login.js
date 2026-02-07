@@ -50,8 +50,8 @@ const Login=async(req,res)=>{
 
      res.cookie('JWT_token',token,{
          httpOnly:true,
-           secure:false,  //true only in production 
-            sameSite:"lax",
+           secure:true,  //true only in production 
+            sameSite:none,
            maxAge:24*60*60*1000
      })
 
