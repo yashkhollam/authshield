@@ -14,7 +14,7 @@ const PORT=process.env.PORT
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
-      origin:"https://authshield-1.onrender.com",
+      origin:"https://authshield-mauve.vercel.app",
       credentials:true
 }))
 app.use(cookieParser())
