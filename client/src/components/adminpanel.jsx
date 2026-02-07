@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import {useSelector,useDispatch} from 'react-redux'
-import { userdatathunk ,deleteuserthunk,updateuserstatusthuk} from './features/userdataSlice';
+import { userdatathunk ,deleteuserthunk,updateuserstatusthuk} from './react-redux/features/userdataSlice';
 // import Edituser from './edituser';
 import {toast} from 'react-hot-toast'
 
@@ -73,7 +73,7 @@ const handleblock=async({_id,isActive})=>{
       
       <div className='table-responsive'>
        
-                <table className='mt-3 table table-bordered mx-lg-auto'
+                <table className='mt-3 table table-bordered mx-md-auto'
                         style={{maxWidth:"700px",
                                 textAlign:"center",
                                
