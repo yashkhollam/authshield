@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "author": "",
+  "author": "Yash khollam",
   "type": "module",
   "main": "app.js",
   "scripts": {
+    "dev":"nodemon app.js",
     "start": "node app.js"
   },
   "dependencies": {
@@ -21,4 +22,5 @@
     "nodemailer": "^7.0.12",
     "nodemon": "^3.1.11"
   }
+  
 }
