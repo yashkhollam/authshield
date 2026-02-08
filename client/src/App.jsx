@@ -18,8 +18,7 @@ import ProtectedRoutes from './components/protectedRoutes.jsx'
 
 
 function App() {
-  console.log("API URL:", import.meta.env.VITE_API_URL);
-
+  
  const { isauthChecked } = useSelector((state) => state.userAuth);
 const dispatch=useDispatch()
 

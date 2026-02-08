@@ -5,12 +5,23 @@ import bcrypt from 'bcrypt'
 // import userdatamodel from '../models/userdata.js'
 
 const otpCreationService=async(user)=>{
-    try{
+   
     const otp=Math.floor(100000+Math.random()*900000)
 
 
     const hashotp=await bcrypt.hash(otp.toString(),10)
     const otpExpiresAt= new Date(Date.now()+3*60*1000)
+
+   
+          user.otpAttempts=0
+       
+          user.hashotp=hashotp,
+          user.otpExpiresAt=otpExpiresAt
+          user.lastOtpSendAt=new Date
+          await user.save()
+
+
+     try{
     // const otpAttempts=
 
           const transporter=nodemailer.createTransport({
@@ -34,21 +45,16 @@ const otpCreationService=async(user)=>{
 
         //   await transporter.sendMail(otoption)
    
-        
-          user.otpAttempts=0
        
-          user.hashotp=hashotp,
-          user.otpExpiresAt=otpExpiresAt
-          user.lastOtpSendAt=new Date
-          await user.save()
-
-          return {success:true}
+         
    
     }
     catch(err){
-      console.log(err)
-      throw new Error("Failed to send OTP")
+      console.log("OTP email failed",err.message)
+    
     }
+
+     return {success:true}
 }
 
 export default otpCreationService
