@@ -105,15 +105,7 @@ function Signupotpverify() {
     refs[0].current.focus();
   }, []);
 
-  // useEffect(() => {
-  //   if (resendtimer === 0) return;
-
-  //   const interval = setInterval(() => {
-  //     setResendTimer((prev) => prev - 1);
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, [resendtimer]);
+  
 
   const resendotp = async () => {
     try {
@@ -121,7 +113,7 @@ function Signupotpverify() {
       const data = await dispatch(Resendotpthunk(formdata)).unwrap();
       const { message } = data;
       toast.success(message);
-      // setResendTimer(60);
+     
     } catch (err) {
       toast.error(err);
     }

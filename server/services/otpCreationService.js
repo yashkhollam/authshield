@@ -35,7 +35,7 @@ const otpCreationService=async(user)=>{
                
           })
    
-          await transporter.sendMail({
+         const info= await transporter.sendMail({
            from:`"AUTHSHIELD" ${process.env.Email_user}`,
            to:user.email,
            subject:"Otp verification from AUTHSHIELD",
@@ -45,6 +45,8 @@ const otpCreationService=async(user)=>{
 
         //   await transporter.sendMail(otoption)
    
+console.log("Email sent:", info.response);
+
        
          
    
