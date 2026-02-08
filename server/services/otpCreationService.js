@@ -52,7 +52,8 @@ const otpCreationService=async(user)=>{
 // console.log("Email sent:", info.response);
 
       const response=await  resend.emails.send({
-    from:`Authshield <onboarding@resend.dev>`,
+    from:`Authshield ${Email_user} `,
+    //<onboarding@resend.dev>
     to: user.email,
     subject: "Otp verification from AUTHSHIELD",
     html: `<h2>Your OTP is ${otp}</h2><p>Valid for 3 minutes</p>`
