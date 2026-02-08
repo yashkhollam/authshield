@@ -16,13 +16,25 @@ import { authStatusthunk } from './components/react-redux/features/userAuthSlice
 import ProtectedRoutes from './components/protectedRoutes.jsx'
 
 
-function App() {
 
+function App() {
+ const { isauthChecked } = useSelector((state) => state.userAuth);
 const dispatch=useDispatch()
 
 useEffect(()=>{
   dispatch(authStatusthunk())
 },[dispatch])
+
+
+if (!isauthChecked) {
+    return (
+      <div style={{ height: "100vh",
+                    display: "flex",
+                    alignItems: "center", justifyContent: "center" }}>
+        <div className="spinner-border" role="status" />
+      </div>
+    );
+  }
 
 
 const router=createBrowserRouter([
@@ -77,7 +89,8 @@ const router=createBrowserRouter([
 ])
 
   return (
-   <>
+   <> 
+   
       <RouterProvider router={router}/>
      
          <Toaster 
