@@ -3,7 +3,7 @@ import '../css/navbar.css'
 import {NavLink,useNavigate} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {useDispatch,useSelector} from 'react-redux'
-import { Loginthunk, Signupthunk } from './react-redux/features/userAuthSlice'
+import { Loginthunk} from './react-redux/features/userAuthSlice'
 import {toast} from 'react-hot-toast'
 
 
