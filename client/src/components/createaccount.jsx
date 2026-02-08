@@ -14,7 +14,7 @@ function CreateAccount() {
     const data={username:"",email:"",password:""}
     const [formdata,setFormdata]=useState(data)
     const dispatch=useDispatch()
-    const {signupLoading}=useSelector((state)=>state.userAuth)
+    const {signup}=useSelector((state)=>state.userAuth.loading)
     const navigate=useNavigate()
 
   const handlepassvisibility=()=>{
@@ -56,7 +56,7 @@ function CreateAccount() {
   return (
     <> 
       {
-        signupLoading && 
+        signup && 
         
         <div
                     style={{
