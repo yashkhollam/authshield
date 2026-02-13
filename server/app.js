@@ -14,8 +14,8 @@ const PORT=process.env.PORT || 5000
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
-    //   origin:"https://authshield-theta.vercel.app",
-    origin:"http://localhost:5173",
+      origin:"https://authshield-sigma.vercel.app",
+    // origin:"http://localhost:5173",
       credentials:true
 }))
 
