@@ -5,9 +5,10 @@ import jwt from 'jsonwebtoken'
 const Login=async(req,res)=>{
     try{
         
-
+  
     const {email,password}=req.body
-
+  
+   
     const user=await userDataModel.findOne({email})
 
     if(!user){
@@ -48,10 +49,12 @@ const Login=async(req,res)=>{
      {expiresIn:'24h'}
      )
 
+     
+
      res.cookie('JWT_token',token,{
          httpOnly:true,
            secure:true,  //true only in production 
-            sameSite:"none",
+            sameSite:"none",  //if not iin production use lax
            maxAge:24*60*60*1000
      })
 

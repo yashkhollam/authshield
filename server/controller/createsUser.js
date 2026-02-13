@@ -1,13 +1,14 @@
 import userdatamodel from '../models/userdata.js'
 import bcrypt from 'bcrypt'
-import otpService from '../services/otpCreationService.js';
+import otpCreationService from '../services/otpCreationService.js';
+
 
 
 const createuser=async(req,res)=>{
     try{
        const {username,email,password}=req.body;
 
-    console.log(req.body)
+  
        const user=await userdatamodel.findOne({email})
 
        if(user && user.isEmailverified===true){
@@ -21,7 +22,7 @@ const createuser=async(req,res)=>{
        const hashpassword=await bcrypt.hash(password,10)
        if(user && user.isEmailverified===false){
        
-        await otpService(user)  //email sent from here
+        await otpCreationService(user) //email sent from here
 
 
 
@@ -33,14 +34,13 @@ const createuser=async(req,res)=>{
      
 
       
-            const newuser=await userdatamodel.create({
+            await userdatamodel.create({
             username,
             email,
             hashpassword:hashpassword,
             isEmailverified:false
            })
-
-       await otpService(newuser)//email send here
+  
 
         res.status(201).json({
         success:true,

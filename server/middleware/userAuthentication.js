@@ -6,6 +6,7 @@ import userDataModel from '../models/userdata.js'
 const userAuthentication=async(req,res,next)=>{
     try{
         const token=req.cookies.JWT_token
+        
 
         if(!token){
             return res.status(400).json({

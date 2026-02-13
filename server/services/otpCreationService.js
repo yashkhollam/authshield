@@ -1,33 +1,49 @@
-import nodemailer from "nodemailer";
+import axios from "axios";
 import bcrypt from "bcrypt";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.Email_user,
-    pass: process.env.Email_apppass,
-  },
-});
-
 const otpCreationService = async (user) => {
-  const otp = Math.floor(100000 + Math.random() * 900000);
+  try {
+    const otp = Math.floor(100000 + Math.random() * 900000);
 
-  user.hashotp = await bcrypt.hash(otp.toString(), 10);
-  user.otpExpiresAt = new Date(Date.now() + 3 * 60 * 1000);
-  user.otpAttempts = 0;
-  user.lastOtpSendAt = new Date();
-  await user.save();
+    const hashotp = await bcrypt.hash(otp.toString(), 10);
+    const otpExpiresAt = new Date(Date.now() + 3 * 60 * 1000);
 
-  transporter.sendMail({
-    from: `"Authshield" <${process.env.Email_user}>`,
-    to: user.email,
-    subject: "OTP Verification",
-    html: `<h2>Your OTP is ${otp}</h2><p>Valid for 3 minutes</p>`
-  })
-  .then(() => console.log("OTP sent"))
-  .catch(err => console.error("OTP failed:", err.message));
+    // Send Email via Brevo HTTP API
+    await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          email: process.env.Email_sender,
+          name: "AUTHSHIELD",
+        },
+        to: [{ email: user.email }],
+        subject: "OTP Verification from AUTHSHIELD",
+        htmlContent: `
+          <h2>Your verification code is ${otp}</h2>
+          <h3>This code will expire in 3 minutes</h3>
+        `,
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-  return { success: true };
+    user.otpAttempts = 0;
+    user.hashotp = hashotp;
+    user.otpExpiresAt = otpExpiresAt;
+    user.lastOtpSendAt = new Date();
+
+    await user.save();
+
+    return { success: true };
+
+  } catch (err) {
+    console.log("Brevo Error:", err.response?.data || err.message);
+    throw new Error("Failed to send OTP");
+  }
 };
 
 export default otpCreationService;

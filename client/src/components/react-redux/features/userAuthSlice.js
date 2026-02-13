@@ -10,7 +10,7 @@ export const Signupthunk = createAsyncThunk(
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/createuser`,
-        formdata
+        formdata,{withCredentials:true}
       );
       return res.data;
     } catch (err) {
@@ -28,7 +28,7 @@ export const SignupOtpVerification = createAsyncThunk(
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/signupverify`,
-        formdata
+        formdata,{withCredentials:true}
       );
       return res.data;
     } catch (err) {
