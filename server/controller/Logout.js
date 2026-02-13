@@ -2,8 +2,8 @@ const Logout = async (req, res) => {
   try {
     res.clearCookie("JWT_token", {
       httpOnly: true,
-      secure: false,      // MUST match login
-      sameSite: "lax"   // MUST match login
+      secure: true,      // MUST match login
+      sameSite: "none"   // MUST match login
     });
 
     return res.status(200).json({

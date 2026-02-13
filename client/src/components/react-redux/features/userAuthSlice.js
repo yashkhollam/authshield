@@ -63,14 +63,14 @@ export const Loginthunk = createAsyncThunk(
 
 export const Logoutthunk = createAsyncThunk(
   "userAuth/logout",
-  async (_,{ dispatch,rejectWithValue }) => {
+  async (_,{rejectWithValue }) => {
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/logout`,
         {},
         { withCredentials: true }
       );
-      dispatch(authStatusthunk()); //to check the user is present or not
+    
       return res.data;
     } catch (err) {
       return rejectWithValue(
@@ -336,8 +336,9 @@ const userAuthSlice = createSlice({
         state.error = null;
       })
       .addCase(Logoutthunk.fulfilled, (state) => {
-         state.isAuthenticated=false
-         state.isauthChecked=true
+         state.isAuthenticated=false;
+         state.isauthChecked=true;
+         state.user=null;
         state.loading.logout = false;
       })
       .addCase(Logoutthunk.rejected, (state, action) => {
